@@ -114,7 +114,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
             //Si hay exito empezamos a consumir servicios
             if (conexion.iniciarRegistry()){
                 if (conexion.getServidor().inicioSesion(Nombre, Pass)){
-                    new vistaInicio().getInstanciaVista().setVisible(true);
+                    new vistaInicio().setVisible(true);
                     //this.setVisible(false);
                     conexion.registrarCliente(Nombre);
                     
@@ -133,10 +133,16 @@ public class vistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_ingresar
 
     private void RegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistroActionPerformed
-        // TODO add your handling code here:
-        new vistaRegistro().getInstanciaVista().setVisible(true);
         this.setVisible(false);
+        vistaRegistro Vista=new vistaRegistro();
+        Vista.setVisible(true);
         
+        boolean valor;
+        
+        
+       
+        //valor=conexion.getServidor().Registrar(Vista.getNombreReal(), Vista.getPaterno(), Vista.getMaterno(), Vista.getUser(), Vista.getPass(), 1);
+            
         
     }//GEN-LAST:event_RegistroActionPerformed
  

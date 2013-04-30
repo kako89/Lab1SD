@@ -4,23 +4,58 @@
  */
 package vistas;
 
+import clientermi.conexionRMI;
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Marco
  */
-public class vistaRegistro extends javax.swing.JPanel {
-
-    private static vistaRegistro propiaVista;
-    
+public class vistaRegistro extends javax.swing.JFrame {
+    String NombreReal;
+    String Paterno;
+    String Materno;
+    String User;
+    String Pass;
+    String Cpass;
+    public conexionRMI conexion = new conexionRMI();
+    /**
+     * Creates new form vistaRegistro
+     */
     public vistaRegistro() {
         initComponents();
     }
     
-    public static vistaRegistro getInstanciaVista(){
-        if (propiaVista == null){
-            propiaVista = new vistaRegistro();
-        }
-        return propiaVista;
+    public String getNombreReal(){
+        NombreReal=this.IngresoNombre.getText();
+        return NombreReal;
+    }
+    
+    public String getPaterno(){
+        Paterno=this.IngresoPaterno.getText();
+        return Paterno;
+    }
+    
+    public String getMaterno(){
+        Materno=this.IngresoPaterno.getText();
+        return Materno;
+    }
+    public String getUser(){
+         User=this.IngresoUser.getText();
+        return User;
+    }
+    
+    public String getPass(){
+        Pass=this.IngresoPass.getText();
+        return Pass;
+    }
+    
+    public String getCpass(){
+        Cpass=this.IngresoCPass.getText();
+        return Cpass;
     }
 
     /**
@@ -34,129 +69,204 @@ public class vistaRegistro extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        IngresoNombre = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        IngresoPaterno = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        IngresoMaterno = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        IngresoUser = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        CampoNombre = new javax.swing.JTextField();
-        CampoApPat = new javax.swing.JTextField();
-        CampApMat = new javax.swing.JTextField();
-        CampoUsuario = new javax.swing.JTextField();
-        CampoPass = new javax.swing.JPasswordField();
-        CampoPassConfirm = new javax.swing.JPasswordField();
-        Confirmar = new javax.swing.JButton();
+        IngresoPass = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        IngresoCPass = new javax.swing.JTextField();
+        AceptarRegistro = new javax.swing.JButton();
+        CancelarRegistro = new javax.swing.JButton();
 
-        jLabel1.setText(" Nombre");
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel2.setText("Apellido Paterno");
+        jLabel1.setText("Ingrese sus datos para el registro:");
 
-        jLabel3.setText("Apellido Materno");
+        jLabel2.setText("Nombre:");
 
-        jLabel4.setText("Usuario");
+        jLabel3.setText("Apellido Paterno:");
 
-        jLabel5.setText("Constraseña");
+        jLabel4.setText("Apellido Materno: ");
 
-        jLabel6.setText("Confirmar Contraseña");
+        jLabel5.setText("Username: ");
 
-        CampoNombre.addActionListener(new java.awt.event.ActionListener() {
+        jLabel6.setText("Contraseña: ");
+
+        jLabel7.setText("Confirmar Contraseña: ");
+
+        AceptarRegistro.setText("Aceptar");
+        AceptarRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CampoNombreActionPerformed(evt);
+                AceptarRegistroActionPerformed(evt);
             }
         });
 
-        CampApMat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CampApMatActionPerformed(evt);
-            }
-        });
+        CancelarRegistro.setText("Cancelar");
 
-        Confirmar.setText("Confirmar");
-
-        jLabel7.setText("Registro de un nuevo Usuario");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel1)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel5))
-                            .addGap(41, 41, 41)
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(IngresoUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(IngresoMaterno, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(IngresoPass)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(CampoNombre)
-                                .addComponent(CampoApPat)
-                                .addComponent(CampoPass, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
-                                .addComponent(CampApMat)
-                                .addComponent(CampoUsuario)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel6)
-                            .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(Confirmar)
-                                .addComponent(CampoPassConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(143, Short.MAX_VALUE))
+                                .addComponent(IngresoNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                .addComponent(IngresoPaterno))
+                            .addComponent(IngresoCPass, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(AceptarRegistro)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(CancelarRegistro)))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel7)
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(CampoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(35, 35, 35)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(CampoApPat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(CampApMat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(CampoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(CampoPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(IngresoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(CampoPassConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel3)
+                    .addComponent(IngresoPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(IngresoMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(IngresoUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(12, 12, 12))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(IngresoPass, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel7)
+                    .addComponent(IngresoCPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(Confirmar)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AceptarRegistro)
+                    .addComponent(CancelarRegistro))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void CampoNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoNombreActionPerformed
+    private void AceptarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarRegistroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_CampoNombreActionPerformed
+        //vistaPrincipal regreso= new vistaPrincipal();
+        
+        try {
+            //Intentamos conectarnos con el servidor
+            //Si hay exito empezamos a consumir servicios
+            if (conexion.iniciarRegistry()){
+                if (conexion.getServidor().Registrar("a", "a", "a", "a", "a", 1)){
+                    new vistaInicio().setVisible(true);
+                    //this.setVisible(false);
+                    //conexion.registrarCliente(Nombre);
+                    
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, "Nombre y/o Contraseña Inválida", "Mensaje", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "No se pudo Conectar", "Mensaje", JOptionPane.ERROR_MESSAGE);
+            }
 
-    private void CampApMatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampApMatActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CampApMatActionPerformed
+        } catch (RemoteException ex) {
+            Logger.getLogger(vistaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+          
+        
+        
+    }//GEN-LAST:event_AceptarRegistroActionPerformed
 
+     private void CancelarRegistroActionPerformed(java.awt.event.ActionEvent evt) {
+         vistaPrincipal regreso=new vistaPrincipal();
+         this.setVisible(false);
+         regreso.setVisible(true);
+     }
+    
+    /**
+     * @param args the command line arguments
+     */
+    
+    
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(vistaRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(vistaRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(vistaRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(vistaRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new vistaRegistro().setVisible(true);
+            }
+        });
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField CampApMat;
-    private javax.swing.JTextField CampoApPat;
-    private javax.swing.JTextField CampoNombre;
-    private javax.swing.JPasswordField CampoPass;
-    private javax.swing.JPasswordField CampoPassConfirm;
-    private javax.swing.JTextField CampoUsuario;
-    private javax.swing.JButton Confirmar;
+    private javax.swing.JButton AceptarRegistro;
+    private javax.swing.JButton CancelarRegistro;
+    public javax.swing.JTextField IngresoCPass;
+    public javax.swing.JTextField IngresoMaterno;
+    public javax.swing.JTextField IngresoNombre;
+    public javax.swing.JTextField IngresoPass;
+    public javax.swing.JTextField IngresoPaterno;
+    public javax.swing.JTextField IngresoUser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -47,6 +47,30 @@ public class interfazServidorImpl extends UnicastRemoteObject implements interfa
         
         return false;
     }
+    
+    public boolean Registrar( String Nombre, String Paterno, String Materno, String User, String Pass, int tipo )throws RemoteException{
+        Conexion con= new Conexion("root", "", "violadores", "localhost");
+        con.conectar();
+        
+        Statement s;
+        s= con.stm;
+        int tipoUser =1;
+        
+        try {
+            
+            ResultSet rs = s.executeQuery ("INSERT INTO usuario VALUES("+tipoUser+", "+Nombre+", "+Paterno+", "+Materno+", "+User+", "+Pass+")");
+            
+            
+            return true;
+            
+        }catch (SQLException ex) {
+            Logger.getLogger(interfazServidorImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return false;
+    }
+    
+    
     //Este método registra clientes que se conectan
     public synchronized void registrarCliente(interfazCliente cliente, String Nombre) throws RemoteException{
         if (!(clientes.contains(cliente))) {
