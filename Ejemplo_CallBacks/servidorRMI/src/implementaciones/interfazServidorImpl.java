@@ -52,14 +52,15 @@ public class interfazServidorImpl extends UnicastRemoteObject implements interfa
         Conexion con= new Conexion("root", "", "violadores", "localhost");
         con.conectar();
         
+        
         Statement s;
         s= con.stm;
         int tipoUser =1;
+        int tipoUser2 =2;
         
         try {
-            
-            ResultSet rs = s.executeQuery ("INSERT INTO usuario VALUES("+tipoUser+", "+Nombre+", "+Paterno+", "+Materno+", "+User+", "+Pass+")");
-            
+            int rs = s.executeUpdate ("INSERT INTO usuario VALUES('3','1','a','a','a','a','a')");
+            System.out.println("lala");
             
             return true;
             
