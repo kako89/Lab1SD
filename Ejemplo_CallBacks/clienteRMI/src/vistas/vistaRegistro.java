@@ -40,7 +40,7 @@ public class vistaRegistro extends javax.swing.JFrame {
     }
     
     public String getMaterno(){
-        Materno=this.IngresoPaterno.getText();
+        Materno=this.IngresoMaterno.getText();
         return Materno;
     }
     public String getUser(){
@@ -179,7 +179,7 @@ public class vistaRegistro extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AceptarRegistro)
                     .addComponent(CancelarRegistro))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         pack();
@@ -188,28 +188,31 @@ public class vistaRegistro extends javax.swing.JFrame {
     private void AceptarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarRegistroActionPerformed
         // TODO add your handling code here:
         //vistaPrincipal regreso= new vistaPrincipal();
-        
-        try {
-            //Intentamos conectarnos con el servidor
-            //Si hay exito empezamos a consumir servicios
-            if (conexion.iniciarRegistry()){
-                if (conexion.getServidor().Registrar("a", "a", "a", "a", "a", 1)){
-                    new vistaInicio().setVisible(true);
-                    //this.setVisible(false);
-                    //conexion.registrarCliente(Nombre);
-                    
+       
+            
+               
+            try {
+                //Intentamos conectarnos con el servidor
+                //Si hay exito empezamos a consumir servicios
+                if (conexion.iniciarRegistry()){
+                    if (conexion.getServidor().Registrar(this.IngresoNombre.getText(), this.IngresoPaterno.getText(), this.IngresoMaterno.getText(), this.IngresoUser.getText(), this.IngresoPass.getText(), 1)){
+                        new vistaInicio().setVisible(true);
+                        //this.setVisible(false);
+                        //conexion.registrarCliente(Nombre);
+
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(this, "Nombre y/o Contraseña Inválida", "Mensaje", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
                 else{
-                    JOptionPane.showMessageDialog(this, "Nombre y/o Contraseña Inválida", "Mensaje", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "No se pudo Conectar", "Mensaje", JOptionPane.ERROR_MESSAGE);
                 }
-            }
-            else{
-                JOptionPane.showMessageDialog(this, "No se pudo Conectar", "Mensaje", JOptionPane.ERROR_MESSAGE);
-            }
 
-        } catch (RemoteException ex) {
-            Logger.getLogger(vistaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            } catch (RemoteException ex) {
+                Logger.getLogger(vistaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
         
           
         
@@ -217,9 +220,10 @@ public class vistaRegistro extends javax.swing.JFrame {
     }//GEN-LAST:event_AceptarRegistroActionPerformed
 
      private void CancelarRegistroActionPerformed(java.awt.event.ActionEvent evt) {
-         vistaPrincipal regreso=new vistaPrincipal();
          this.setVisible(false);
-         regreso.setVisible(true);
+         vistaPrincipal Vista=new vistaPrincipal();
+         Vista.setVisible(true);
+         
      }
     
     /**

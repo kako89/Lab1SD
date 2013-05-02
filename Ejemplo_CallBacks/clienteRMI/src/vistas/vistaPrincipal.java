@@ -137,11 +137,11 @@ public class vistaPrincipal extends javax.swing.JFrame {
         vistaRegistro Vista=new vistaRegistro();
         Vista.setVisible(true);
         
-        boolean valor;
+        
         
         
        
-        //valor=conexion.getServidor().Registrar(Vista.getNombreReal(), Vista.getPaterno(), Vista.getMaterno(), Vista.getUser(), Vista.getPass(), 1);
+       
             
         
     }//GEN-LAST:event_RegistroActionPerformed

@@ -50,10 +50,12 @@ public class Conexion {
         }
      }
     
-    public void consultar() throws SQLException{
-        rs = stm.executeQuery("SELECT nombre_usuario FROM usuario");
-        while(rs.next()){
-            
-        }
+    /**
+     *
+     */
+    public void desconectar(){
+        conn=null;
     }
+    
+    
 }

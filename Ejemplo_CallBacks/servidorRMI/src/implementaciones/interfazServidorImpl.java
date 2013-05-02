@@ -29,16 +29,21 @@ public class interfazServidorImpl extends UnicastRemoteObject implements interfa
             ResultSet rs = s.executeQuery ("select nombre_usuario, contrasena from usuario");
             int columna_nombre = rs.findColumn("nombre_usuario");
             int columna_pass= rs.findColumn("contrasena");
+            
+            String nombreDelUsuario;
+            String claveDelUsuario;
             while (rs.next()) { 
-                String nombreDelUsuario = rs.getString(columna_nombre);
-                String claveDelUsuario = rs.getString(columna_pass);
+                nombreDelUsuario = rs.getString(columna_nombre);
+                claveDelUsuario = rs.getString(columna_pass);
                 if (nombre.equals(nombreDelUsuario)&& pass.equals(claveDelUsuario)){
+                    con=null; // se cierra la conexion con la base de datos
                     return true;
+                    
                 }
-                else{
-                    return false;
-                }
+                
             }
+            
+            
             
         }catch (SQLException ex) {
             Logger.getLogger(interfazServidorImpl.class.getName()).log(Level.SEVERE, null, ex);
@@ -51,17 +56,14 @@ public class interfazServidorImpl extends UnicastRemoteObject implements interfa
     public boolean Registrar( String Nombre, String Paterno, String Materno, String User, String Pass, int tipo )throws RemoteException{
         Conexion con= new Conexion("root", "", "violadores", "localhost");
         con.conectar();
-        
-        
+
         Statement s;
         s= con.stm;
-        int tipoUser =1;
-        int tipoUser2 =2;
         
         try {
-            int rs = s.executeUpdate ("INSERT INTO usuario VALUES('3','1','a','a','a','a','a')");
-            System.out.println("lala");
-            
+            int rs = s.executeUpdate ("INSERT INTO usuario VALUES(null,'1','"+Nombre+"','"+Paterno+"','"+Materno+"','"+User+"','"+Pass+"')");
+            //System.out.println("lala");
+            con=null;// cierra la conexion con la base de datos
             return true;
             
         }catch (SQLException ex) {
