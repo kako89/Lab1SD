@@ -9,11 +9,12 @@ import vistas.*;
  * @author Administrador
  */
 public class retardo implements Runnable{
-    private vistaSecundaria miVista;
+    private vistaChat miVista;
     
-    public retardo(vistaSecundaria vista){
+    public retardo(vistaChat vista){
         miVista = vista;
     }   
+
     public void run() {
         try {
             Thread.sleep(4000);

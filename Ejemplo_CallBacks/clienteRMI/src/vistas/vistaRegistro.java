@@ -29,7 +29,7 @@ public class vistaRegistro extends javax.swing.JFrame {
         initComponents();
     }
     
-    public String getNombreReal(){
+    /*public String getNombreReal(){
         NombreReal=this.IngresoNombre.getText();
         return NombreReal;
     }
@@ -56,7 +56,7 @@ public class vistaRegistro extends javax.swing.JFrame {
     public String getCpass(){
         Cpass=this.IngresoCPass.getText();
         return Cpass;
-    }
+    }*/
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -77,11 +77,11 @@ public class vistaRegistro extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         IngresoUser = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        IngresoPass = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        IngresoCPass = new javax.swing.JTextField();
         AceptarRegistro = new javax.swing.JButton();
         CancelarRegistro = new javax.swing.JButton();
+        IngresoPass = new javax.swing.JPasswordField();
+        IngresoCPass = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -93,7 +93,14 @@ public class vistaRegistro extends javax.swing.JFrame {
 
         jLabel4.setText("Apellido Materno: ");
 
-        jLabel5.setText("Username: ");
+        jLabel5.setText("RUT: ");
+
+        IngresoUser.setForeground(new java.awt.Color(204, 204, 204));
+        IngresoUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IngresoUserActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Contraseña: ");
 
@@ -107,40 +114,58 @@ public class vistaRegistro extends javax.swing.JFrame {
         });
 
         CancelarRegistro.setText("Cancelar");
+        CancelarRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelarRegistroActionPerformed(evt);
+            }
+        });
+
+        IngresoPass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IngresoPassActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(IngresoUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                            .addComponent(IngresoMaterno, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(IngresoPass)))
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(IngresoUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                    .addComponent(IngresoMaterno, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(IngresoPass)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(AceptarRegistro)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(CancelarRegistro))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3))
+                                .addGap(35, 35, 35))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(IngresoNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                                .addComponent(IngresoPaterno))
-                            .addComponent(IngresoCPass, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(AceptarRegistro)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CancelarRegistro)))
+                            .addComponent(IngresoNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(IngresoPaterno)
+                            .addComponent(IngresoCPass))))
                 .addContainerGap(110, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -165,21 +190,18 @@ public class vistaRegistro extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(IngresoUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(12, 12, 12))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(IngresoPass, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel7)
-                    .addComponent(IngresoCPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(IngresoPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(IngresoCPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AceptarRegistro)
                     .addComponent(CancelarRegistro))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
@@ -194,15 +216,25 @@ public class vistaRegistro extends javax.swing.JFrame {
             try {
                 //Intentamos conectarnos con el servidor
                 //Si hay exito empezamos a consumir servicios
+                String Pass=this.IngresoPass.getText();
+                String CPass=this.IngresoCPass.getText();
+                boolean var;
                 if (conexion.iniciarRegistry()){
-                    if (conexion.getServidor().Registrar(this.IngresoNombre.getText(), this.IngresoPaterno.getText(), this.IngresoMaterno.getText(), this.IngresoUser.getText(), this.IngresoPass.getText(), 1)){
-                        new vistaInicio().setVisible(true);
-                        //this.setVisible(false);
-                        //conexion.registrarCliente(Nombre);
-
+                    if (Pass.equals(CPass)){
+                        var=conexion.getServidor().Registrar(this.IngresoNombre.getText().toLowerCase(), this.IngresoPaterno.getText().toLowerCase(), this.IngresoMaterno.getText().toLowerCase(), this.IngresoUser.getText(), this.IngresoPass.getText(), 1);
+                        if(var){
+                            JOptionPane.showMessageDialog(this, "Registro Completado. Se redigirá al sistema", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                            new vistaInicio().setVisible(true);
+                            
+                            this.dispose();
+                            //conexion.registrarCliente(Nombre);
+                        }
+                        else{
+                            JOptionPane.showMessageDialog(this, "Su registro no pudo ser completado", "Mensaje", JOptionPane.ERROR_MESSAGE);
+                        }
                     }
                     else{
-                        JOptionPane.showMessageDialog(this, "Nombre y/o Contraseña Inválida", "Mensaje", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "contraseñas no concuerdan", "Mensaje", JOptionPane.ERROR_MESSAGE);
                     }
                 }
                 else{
@@ -219,12 +251,22 @@ public class vistaRegistro extends javax.swing.JFrame {
         
     }//GEN-LAST:event_AceptarRegistroActionPerformed
 
-     private void CancelarRegistroActionPerformed(java.awt.event.ActionEvent evt) {
-         this.setVisible(false);
-         vistaPrincipal Vista=new vistaPrincipal();
-         Vista.setVisible(true);
-         
-     }
+    private void IngresoUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IngresoUserActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_IngresoUserActionPerformed
+
+    private void IngresoPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IngresoPassActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_IngresoPassActionPerformed
+
+    private void CancelarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarRegistroActionPerformed
+        vistaPrincipal VP=new vistaPrincipal();
+        VP.setVisible(true);
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_CancelarRegistroActionPerformed
+
+     
     
     /**
      * @param args the command line arguments
@@ -265,10 +307,10 @@ public class vistaRegistro extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AceptarRegistro;
     private javax.swing.JButton CancelarRegistro;
-    public javax.swing.JTextField IngresoCPass;
+    private javax.swing.JPasswordField IngresoCPass;
     public javax.swing.JTextField IngresoMaterno;
     public javax.swing.JTextField IngresoNombre;
-    public javax.swing.JTextField IngresoPass;
+    private javax.swing.JPasswordField IngresoPass;
     public javax.swing.JTextField IngresoPaterno;
     public javax.swing.JTextField IngresoUser;
     private javax.swing.JLabel jLabel1;

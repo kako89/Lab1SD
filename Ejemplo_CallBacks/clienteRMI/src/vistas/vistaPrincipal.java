@@ -4,9 +4,26 @@ import java.rmi.RemoteException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import interfaz.*;
+
 
 public class vistaPrincipal extends javax.swing.JFrame {
+
+    /**
+     * @return the aux
+     */
+    public static String getAux() {
+        return aux;
+    }
+
+    /**
+     * @param aAux the aux to set
+     */
+    public static void setAux(String aAux) {
+        aux = aAux;
+    }
     private conexionRMI conexion = new conexionRMI();
+    private static String aux;
 
     public vistaPrincipal() {
         initComponents();
@@ -20,16 +37,22 @@ public class vistaPrincipal extends javax.swing.JFrame {
         LabelNombre = new javax.swing.JLabel();
         TextFieldNombre = new javax.swing.JTextField();
         LabelPass = new javax.swing.JLabel();
-        TextFieldPass = new javax.swing.JTextField();
         ButtonIngresar = new javax.swing.JButton();
         Registro = new javax.swing.JButton();
+        TextFieldPass = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ejemplo Cliente RMI");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Inicio de Sesión"));
 
-        LabelNombre.setText("Nombre de Usuario:");
+        LabelNombre.setText("Rut sin verificador:");
+
+        TextFieldNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TextFieldNombreKeyTyped(evt);
+            }
+        });
 
         LabelPass.setText("Contraseña:");
 
@@ -37,6 +60,11 @@ public class vistaPrincipal extends javax.swing.JFrame {
         ButtonIngresar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ingresar(evt);
+            }
+        });
+        ButtonIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonIngresarActionPerformed(evt);
             }
         });
 
@@ -57,14 +85,13 @@ public class vistaPrincipal extends javax.swing.JFrame {
                     .addComponent(LabelPass)
                     .addComponent(LabelNombre))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(ButtonIngresar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Registro))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(TextFieldPass)
-                        .addComponent(TextFieldNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)))
+                    .addComponent(TextFieldNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                    .addComponent(TextFieldPass))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -92,7 +119,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,24 +135,44 @@ public class vistaPrincipal extends javax.swing.JFrame {
     private void ingresar(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ingresar
         //Recuperamos nombre y pass de la vista
         String Nombre = this.TextFieldNombre.getText();
+        setAux(Nombre);
         String Pass = this.TextFieldPass.getText();
         try {
             //Intentamos conectarnos con el servidor
             //Si hay exito empezamos a consumir servicios
             if (conexion.iniciarRegistry()){
-                if (conexion.getServidor().inicioSesion(Nombre, Pass)){
+                
+                int ValorRetorno=conexion.getServidor().inicioSesion(Nombre, Pass);
+                if (ValorRetorno==1){
+                    //new vistaInicio().setVisible(true);
+                    this.setVisible(false);
+                    
                     new vistaInicio().setVisible(true);
-                    //this.setVisible(false);
+                    
+                   
+                    // registro dentro del servidor para el chat
                     conexion.registrarCliente(Nombre);
                     
                 }
-                else{
+                if (ValorRetorno ==2){
+                    //new vistaSecundaria().setVisible(true);
+                    //new vistaInicioAdm().setVisible(true);
+                    this.setVisible(false);
+                    new vistaInicioAdm().setVisible(true);
+                            
+                    //Registro dentro del servidor para el chat
+                    conexion.registrarCliente(Nombre);
+                                        
+                    
+                }
+                if (ValorRetorno==0){
                     JOptionPane.showMessageDialog(this, "Nombre y/o Contraseña Inválida", "Mensaje", JOptionPane.ERROR_MESSAGE);
                 }
             }
             else{
                 JOptionPane.showMessageDialog(this, "No se pudo Conectar", "Mensaje", JOptionPane.ERROR_MESSAGE);
             }
+
 
         } catch (RemoteException ex) {
             Logger.getLogger(vistaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
@@ -145,6 +192,15 @@ public class vistaPrincipal extends javax.swing.JFrame {
             
         
     }//GEN-LAST:event_RegistroActionPerformed
+
+    private void ButtonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonIngresarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ButtonIngresarActionPerformed
+
+    private void TextFieldNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextFieldNombreKeyTyped
+        // Validación paara el RUT.
+        
+    }//GEN-LAST:event_TextFieldNombreKeyTyped
  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonIngresar;
@@ -152,7 +208,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel LabelPass;
     private javax.swing.JButton Registro;
     private javax.swing.JTextField TextFieldNombre;
-    private javax.swing.JTextField TextFieldPass;
+    private javax.swing.JPasswordField TextFieldPass;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 

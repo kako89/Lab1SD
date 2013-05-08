@@ -93,13 +93,13 @@ public class vistaSecundaria extends javax.swing.JFrame {
     }
 
     public void aviso(String mensaje){
-        this.LabelAviso.setText(mensaje);
-        this.LabelAviso.setVisible(true);
-        Thread hebra = new Thread(new retardo(this));
-        hebra.start();
+       // this.LabelAviso.setText(mensaje);
+       // this.LabelAviso.setVisible(true);
+        //Thread hebra = new Thread(new retardo(this));
+        //hebra.start();
     }
     public void ocultarLabel(){
-        this.LabelAviso.setVisible(false);
+        //this.LabelAviso.setVisible(false);
     }    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

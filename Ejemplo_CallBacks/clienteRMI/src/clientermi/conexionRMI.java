@@ -44,5 +44,10 @@ public class conexionRMI {
         cliente = new interfazClienteImpl();
         servidor.registrarCliente(cliente, Nombre);
     }
+    
+        public void mensajeCliente(String Nombre) throws RemoteException{
+        cliente = new interfazClienteImpl();
+        servidor.mensajeCliente(cliente, Nombre);
+    }
 
 }

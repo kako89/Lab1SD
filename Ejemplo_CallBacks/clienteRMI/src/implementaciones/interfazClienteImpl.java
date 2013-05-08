@@ -10,6 +10,7 @@ public class interfazClienteImpl extends UnicastRemoteObject implements interfaz
         super();
     }
     public void notificar(String mensaje) throws RemoteException{
-        vistaSecundaria.getInstanciaVista().aviso(mensaje);
+        //vistaSecundaria.getInstanciaVista().aviso(mensaje);
+        vistaChat.getInstanciaVista().aviso(mensaje);
     }
 }

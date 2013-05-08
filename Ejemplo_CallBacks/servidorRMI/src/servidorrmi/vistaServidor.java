@@ -28,10 +28,15 @@ public class vistaServidor extends javax.swing.JFrame {
 
         opciones.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones"));
 
-        ButtonIniciar.setText("Iniciar Sever");
+        ButtonIniciar.setText("Iniciar Servidor");
         ButtonIniciar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 iniciarServer(evt);
+            }
+        });
+        ButtonIniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonIniciarActionPerformed(evt);
             }
         });
 
@@ -49,7 +54,7 @@ public class vistaServidor extends javax.swing.JFrame {
             .addGroup(opcionesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ButtonIniciar, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                    .addComponent(ButtonIniciar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ButtonDetener, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -103,10 +108,15 @@ public class vistaServidor extends javax.swing.JFrame {
         try {
             conexion.detener();
             this.ButtonIniciar.setEnabled(true);
+            
         } catch (RemoteException ex) {
             Logger.getLogger(vistaServidor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_detenerServer
+
+    private void ButtonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonIniciarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ButtonIniciarActionPerformed
  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonDetener;
