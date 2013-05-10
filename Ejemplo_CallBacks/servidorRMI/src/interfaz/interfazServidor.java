@@ -18,4 +18,11 @@ public interface interfazServidor extends Remote{
     public boolean EliminarBiblioteca(String Nombre) throws RemoteException;
     public boolean IngresarLibro(String NombreBiblio, String Titulo, int copias)throws RemoteException;
     public String MostrarBiblioLibro(String Libro) throws RemoteException;
+    public String ListadoLibros() throws RemoteException;
+    public boolean IngresoComentario(String rut, String Titulo, String Comentario)throws RemoteException;
+    public String MostrarComentarios(String Titulo) throws RemoteException;
+    public String ConsultarUsuarioE(String Rut)throws RemoteException;
+    public boolean ActualizarUsuario (String Nombre, String ApPaterno, String ApMaterno, String RUT, String RutAnterior, int tipo)throws RemoteException;
+    public boolean CambiarContrasena( String rut, String PassAnterior, String PassNueva)throws RemoteException;
+    public int retornarInicio(String rut)throws RemoteException;
 }

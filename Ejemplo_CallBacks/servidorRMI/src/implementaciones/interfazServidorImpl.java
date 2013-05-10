@@ -177,6 +177,50 @@ public class interfazServidorImpl extends UnicastRemoteObject implements interfa
         return resultado;
     }
     
+    public String ConsultarUsuarioE(String Rut){
+        Conexion con= new Conexion("root", "", "biblioteca", "localhost");
+        con.conectar();
+        
+        Statement s;
+        s= con.stm;
+        String resultado="";
+        try {
+            ResultSet rs = s.executeQuery ("SELECT * FROM usuario WHERE ('"+Rut+"'=usuario.rut)");
+            int columna_nombreUsuario = rs.findColumn("nombre_usuario");
+            int columna_apellidoPaternoUsuario = rs.findColumn("apellido_paterno");
+            int columna_apellidoMaternoUsuario = rs.findColumn("apellido_materno");
+            int columna_rutUsuario = rs.findColumn("rut");
+            int columna_pass=rs.findColumn("contrasena");
+           
+            String nombre_usuario;
+            String apellido_paterno;
+            String apellido_materno;
+            String rut;
+            String pass;
+            
+            
+            while (rs.next()) { 
+                nombre_usuario =rs.getString(columna_nombreUsuario);
+                apellido_paterno =rs.getString(columna_apellidoPaternoUsuario);
+                apellido_materno =rs.getString(columna_apellidoMaternoUsuario);
+                rut =rs.getString(columna_rutUsuario);
+                pass =rs.getString(columna_pass);
+      
+                resultado=resultado + nombre_usuario+";"+ apellido_paterno+";"+ apellido_materno+";"+ rut+";"+pass+";";
+                
+
+            }
+            
+               
+            
+        }catch (SQLException ex) {
+            Logger.getLogger(interfazServidorImpl.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+       
+        return resultado;
+    }
+    
     public String ListadoBiblios(){
         Conexion con= new Conexion("root", "", "biblioteca", "localhost");
         con.conectar();
@@ -210,6 +254,62 @@ public class interfazServidorImpl extends UnicastRemoteObject implements interfa
         
          
     }
+    
+    public boolean ActualizarUsuario (String Nombre, String ApPaterno, String ApMaterno, String RUT,  String RutAnterior, int tipo){
+        
+        Conexion con= new Conexion("root", "", "biblioteca", "localhost");
+        con.conectar();
+        
+        Statement s;
+        s= con.stm;
+        
+        try {
+            int rs = s.executeUpdate ("UPDATE usuario SET nombre_usuario='"+Nombre+"', apellido_paterno='"+ApPaterno+"', apellido_materno='"+ApMaterno+ "', rut='"+RUT+"' WHERE rut='"+RutAnterior+"' AND id_tipo_usuario='"+tipo+"'");
+            //System.out.println("lala");
+            con=null;// cierra la conexion con la base de datos
+            return true;
+            
+        }catch (SQLException ex) {
+            Logger.getLogger(interfazServidorImpl.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
+    
+    
+    
+   public String ListadoLibros(){
+       Conexion con= new Conexion("root", "", "biblioteca", "localhost");
+        con.conectar();
+        
+        Statement s;
+        s= con.stm;
+        String resultado="";
+        try {
+            ResultSet rs = s.executeQuery ("SELECT titulo FROM libro");
+            int columna_titulo = rs.findColumn("titulo");
+           
+            String titulo;
+            
+            
+            while (rs.next()) { 
+                titulo =rs.getString(columna_titulo);
+      
+                resultado=resultado + titulo+";";
+                //System.out.println(resultado+"\n");
+
+            }
+            
+               
+            
+        }catch (SQLException ex) {
+            Logger.getLogger(interfazServidorImpl.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+       
+        return resultado;
+   } 
+   
+   
     
    public String MostrarBiblio(String Nombre){
         Conexion con= new Conexion("root", "", "biblioteca", "localhost");
@@ -403,8 +503,131 @@ public class interfazServidorImpl extends UnicastRemoteObject implements interfa
          }
          else{
              return false;
-         }
+         }  
         
+   }
+   
+   public boolean IngresoComentario(String rut, String Titulo, String Comentario){
+       String id_libro="";
+       String id_usuario="";
+       
+       Conexion con= new Conexion("root", "", "biblioteca", "localhost");
+        con.conectar();
+        
+        Statement s1;
+        Statement s2;
+        Statement s3;
+        
+        
+        s1= con.stm;
+        s2=con.stm;
+        s3=con.stm;
+       
+        
+        //se rescata el identificador de libro
+        try{
+            ResultSet rs = s1.executeQuery ("SELECT id_libro FROM libro WHERE ('"+Titulo+"'=libro.titulo)");
+            int columna_idLibro = rs.findColumn("id_libro");
+            //System.out.println("Hizo tercer try");
+         
+            
+            while (rs.next()) { 
+                id_libro =rs.getString(columna_idLibro);
+                System.out.println("id_libro es "+id_libro);     
+            }
+
+        }catch (SQLException ex){
+            Logger.getLogger(interfazServidorImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //se rescata el identificador de usuario
+        try{
+            ResultSet rs = s2.executeQuery ("SELECT id_usuario FROM usuario WHERE ('"+rut+"'=usuario.rut)");
+            int columna_id_usuario = rs.findColumn("id_usuario");
+            //System.out.println("Hizo tercer try");
+         
+            
+            while (rs.next()) { 
+                id_usuario =rs.getString(columna_id_usuario);
+                System.out.println("id_usuario es "+id_usuario);     
+            }
+
+        }catch (SQLException ex){
+            Logger.getLogger(interfazServidorImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        // se ingresa en la tabla intermedia de las dos tablas anteriores
+        try {
+            int rs = s3.executeUpdate ("INSERT INTO comentario VALUES(null, '"+id_usuario+"','"+id_libro+"', '"+Comentario+"')");
+             System.out.println("Hizo cuarto try");
+            
+        }catch (SQLException ex) {
+            Logger.getLogger(interfazServidorImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+         if (id_usuario!=null && id_libro!=null ){
+             return true;
+         }
+         else{
+             return false;
+         }  
+        
+   }
+   
+   public String MostrarComentarios (String Titulo){
+       String id_libro="";
+       String nombre="";
+       String resultado="";
+       String comentario="";
+       
+       
+       Conexion con= new Conexion("root", "", "biblioteca", "localhost");
+        con.conectar();
+        
+        Statement s1;
+        Statement s2;
+        Statement s3;
+        
+        
+        s1= con.stm;
+        s2=con.stm;
+        s3=con.stm;
+        
+        try{
+            ResultSet rs = s1.executeQuery ("SELECT id_libro FROM libro WHERE ('"+Titulo+"'=libro.titulo)");
+            int columna_idLibro = rs.findColumn("id_libro");
+            //System.out.println("Hizo tercer try");
+         
+            
+            while (rs.next()) { 
+                id_libro =rs.getString(columna_idLibro);
+                System.out.println("id_libro es "+id_libro);     
+            }
+
+        }catch (SQLException ex){
+            Logger.getLogger(interfazServidorImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try{
+            ResultSet rs = s2.executeQuery ("SELECT nombre_usuario, comentario FROM comentario, usuario WHERE ('"+id_libro+"'=comentario.id_libro AND comentario.id_usuario=usuario.id_usuario)");
+            int columna_nombre_usuario = rs.findColumn("nombre_usuario");
+            int columna_comentario = rs.findColumn("comentario");
+            //System.out.println("Hizo tercer try");
+         
+            
+            while (rs.next()) { 
+                nombre =rs.getString(columna_nombre_usuario);
+                comentario=rs.getString(columna_comentario);
+                
+                resultado=resultado+nombre+";"+comentario+";";     
+            }
+            
+
+        }catch (SQLException ex){
+            Logger.getLogger(interfazServidorImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return resultado;
         
         
    }
@@ -444,6 +667,66 @@ public class interfazServidorImpl extends UnicastRemoteObject implements interfa
        
         return resultado;
        
+   }
+   
+   public boolean CambiarContrasena( String rut,String PassAnterior, String PassNueva){
+        Conexion con= new Conexion("root", "", "biblioteca", "localhost");
+        con.conectar();
+        
+        Statement s;
+        s= con.stm;
+        
+        try {
+            int rs = s.executeUpdate ("UPDATE usuario SET contrasena='"+PassNueva+"' WHERE rut='"+rut+"'AND contrasena='"+PassAnterior+"'");
+            //System.out.println("lala");
+            con=null;// cierra la conexion con la base de datos
+            if(rs==1){
+                return true;
+            }
+            else{
+                return false;
+            }
+            
+        }catch (SQLException ex) {
+            Logger.getLogger(interfazServidorImpl.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        
+   }
+   
+   public int retornarInicio(String rut){
+       Conexion con= new Conexion("root", "", "biblioteca", "localhost");
+        con.conectar();
+        
+        Statement s;
+        s= con.stm;
+        int resultado = 0;
+        try {
+            
+            ResultSet rs = s.executeQuery ("SELECT id_tipo_usuario FROM usuario WHERE ('"+rut+"'=usuario.rut)");
+            int columna_tipo = rs.findColumn("id_tipo_usuario");
+           
+             
+            String valor_tipo;
+            
+                
+            while (rs.next()) { 
+
+                valor_tipo =rs.getString(columna_tipo);
+                
+      
+                resultado=Integer.parseInt(valor_tipo);
+                
+            }
+            
+               
+            
+        }catch (SQLException ex) {
+            Logger.getLogger(interfazServidorImpl.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+       
+        return resultado;
    }
 
    

@@ -4,6 +4,7 @@ import java.rmi.*;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import interfaz.*;
+import vistas.vistaPrincipal;
 
 public class conexionRMI {
     private static Registry registry;    
@@ -16,7 +17,12 @@ public class conexionRMI {
             java.security.AllPermission a = new java.security.AllPermission();
             System.setProperty("java.security.policy", "rmi.policy");
             //startRegistry(direccion del registry,puerto de comunicación);
-            startRegistry("127.0.0.1",1099);
+            String IP=vistaPrincipal.getIP();
+            System.out.println(IP);
+            if(IP.equals("")){
+                IP="127.0.0.1";
+            }
+            startRegistry(IP,1099);
             //Vamos al Registry y miramos el Objeto "Implementacion" para poder usarlo.
             servidor = (interfazServidor)registry.lookup("Implementacion");
             return true;
@@ -45,6 +51,10 @@ public class conexionRMI {
         servidor.registrarCliente(cliente, Nombre);
     }
     
+    public void desregistrarCliente(String Nombre) throws RemoteException{
+        cliente=new interfazClienteImpl();
+        servidor.desregistrarCliente(cliente, Nombre);
+    }
         public void mensajeCliente(String Nombre) throws RemoteException{
         cliente = new interfazClienteImpl();
         servidor.mensajeCliente(cliente, Nombre);

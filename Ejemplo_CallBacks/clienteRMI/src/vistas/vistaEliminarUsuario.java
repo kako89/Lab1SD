@@ -32,21 +32,29 @@ public class vistaEliminarUsuario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        BotonVolverUsuario = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         IngresoRutConsulta = new javax.swing.JTextField();
-        BotonEliminarUsuario = new javax.swing.JButton();
-        BotonVolverUsuario = new javax.swing.JButton();
+        BotonBuscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         MuestraResultados = new javax.swing.JTextArea();
-        BotonBuscar = new javax.swing.JButton();
+        BotonEliminarUsuario = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Eliminar Usuario");
+        BotonVolverUsuario.setText("Volver al Menú Usuario");
+        BotonVolverUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonVolverUsuarioActionPerformed(evt);
+            }
+        });
 
-        jLabel2.setText("En esta sección, usted puede elliminar un usuario a traves del rut. Ingrese el rut del usuario a eliminar");
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Eliminar Usuario", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Agency FB", 1, 14))); // NOI18N
+
+        jLabel2.setText("En esta sección, usted puede elliminar un usuario a traves del rut. ");
 
         jLabel3.setText("RUT usuario:");
 
@@ -56,24 +64,6 @@ public class vistaEliminarUsuario extends javax.swing.JFrame {
             }
         });
 
-        BotonEliminarUsuario.setText("Eliminar");
-        BotonEliminarUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonEliminarUsuarioActionPerformed(evt);
-            }
-        });
-
-        BotonVolverUsuario.setText("Volver al Menú Usuario");
-        BotonVolverUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonVolverUsuarioActionPerformed(evt);
-            }
-        });
-
-        MuestraResultados.setColumns(20);
-        MuestraResultados.setRows(5);
-        jScrollPane1.setViewportView(MuestraResultados);
-
         BotonBuscar.setText("Buscar");
         BotonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,52 +71,79 @@ public class vistaEliminarUsuario extends javax.swing.JFrame {
             }
         });
 
+        MuestraResultados.setColumns(20);
+        MuestraResultados.setRows(5);
+        jScrollPane1.setViewportView(MuestraResultados);
+
+        BotonEliminarUsuario.setText("Eliminar");
+        BotonEliminarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonEliminarUsuarioActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Ingrese el rut del usuario a elimina");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(IngresoRutConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BotonBuscar))
+                    .addComponent(jLabel2)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(BotonEliminarUsuario)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addGap(2, 2, 2)
+                .addComponent(jLabel4)
+                .addGap(15, 15, 15)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(IngresoRutConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BotonBuscar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addComponent(BotonEliminarUsuario)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(81, 81, 81)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(BotonEliminarUsuario)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jScrollPane1)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(IngresoRutConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(BotonBuscar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(246, 246, 246)
+                .addComponent(BotonVolverUsuario)
+                .addContainerGap(23, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(BotonVolverUsuario)
-                .addGap(18, 18, 18))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(BotonVolverUsuario)
-                .addGap(21, 21, 21)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(IngresoRutConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BotonBuscar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BotonEliminarUsuario)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
@@ -135,6 +152,7 @@ public class vistaEliminarUsuario extends javax.swing.JFrame {
     private void BotonVolverUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonVolverUsuarioActionPerformed
         // TODO add your handling code here:
         vistaGestionUsuario VGU=new vistaGestionUsuario();
+        VGU.setLocationRelativeTo(null);
         VGU.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_BotonVolverUsuarioActionPerformed
@@ -153,6 +171,7 @@ public class vistaEliminarUsuario extends javax.swing.JFrame {
                     if (Datos){
                         JOptionPane.showMessageDialog(this, "El usuario se eliminó exitosamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                         vistaGestionUsuario VGU=new vistaGestionUsuario();
+                        VGU.setLocationRelativeTo(null);
                         VGU.setVisible(true);
                         this.setVisible(false);
 
@@ -243,9 +262,10 @@ public class vistaEliminarUsuario extends javax.swing.JFrame {
     private javax.swing.JButton BotonVolverUsuario;
     private javax.swing.JTextField IngresoRutConsulta;
     private javax.swing.JTextArea MuestraResultados;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

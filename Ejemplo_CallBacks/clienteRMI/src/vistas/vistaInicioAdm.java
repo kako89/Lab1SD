@@ -4,18 +4,28 @@
  */
 package vistas;
 
+import clientermi.conexionRMI;
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
 import org.jvnet.substance.SubstanceLookAndFeel;
+
+
 
 /**
  *
  * @author Marco
  */
 public class vistaInicioAdm extends javax.swing.JFrame {
-
+    public conexionRMI conexion = new conexionRMI();
     /**
      * Creates new form vistaInicioAdm
      */
-    public vistaInicioAdm() {
+    
+    
+    public vistaInicioAdm(){
+       
         initComponents();
         
     }
@@ -29,78 +39,38 @@ public class vistaInicioAdm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        BotonCerrarSesion = new javax.swing.JButton();
+        EditarCuentaAdm = new javax.swing.JButton();
+        BotonIniciarChat = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        jLabel4 = new javax.swing.JLabel();
         BotonBiblio = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
         BotonLibros = new javax.swing.JButton();
-        jSeparator2 = new javax.swing.JSeparator();
-        jLabel5 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         BotonIngAdmin = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        EditarCuentaAdm = new javax.swing.JButton();
-        jSeparator3 = new javax.swing.JSeparator();
-        jLabel7 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         BotonGestionUsuario = new javax.swing.JButton();
-        BotonIniciarChat = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        CambioContrasena = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú Aministrador");
 
-        jLabel1.setText("Menú Bibliotecas");
-
-        jLabel2.setText("En esta sección usted podrá administrar las bibliotecas disponibles para las consultas de los usuarios.");
-
-        jLabel3.setText("Menú Libros");
-
-        jLabel4.setText("En esta seccion usted podrá  administrar los libros que tiene a disposición cada biblioteca del sistema");
-
-        BotonBiblio.setText("Ingresar Menú Bibliotecas");
-        BotonBiblio.addActionListener(new java.awt.event.ActionListener() {
+        BotonCerrarSesion.setText("Cerrar Sesión");
+        BotonCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonBiblioActionPerformed(evt);
+                BotonCerrarSesionActionPerformed(evt);
             }
         });
-
-        BotonLibros.setText("Ingresar Menú Libros");
-        BotonLibros.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonLibrosActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setText("Menú Administrador Sistema");
-
-        jLabel6.setText("Usted como administrador puede ingresar admninistradores al sistema ");
-
-        BotonIngAdmin.setText("Ingresar Administrador");
-        BotonIngAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonIngAdminActionPerformed(evt);
-            }
-        });
-
-        jButton1.setText("Cerrar Sesión");
 
         EditarCuentaAdm.setText("EditarCuenta");
         EditarCuentaAdm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EditarCuentaAdmActionPerformed(evt);
-            }
-        });
-
-        jLabel7.setText("Menú Usuarios");
-
-        jLabel8.setText("Como administrador puede gestionar usuarios presentes en el sistema");
-
-        BotonGestionUsuario.setText("Ingresar Menú Usuario");
-        BotonGestionUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonGestionUsuarioActionPerformed(evt);
             }
         });
 
@@ -111,101 +81,196 @@ public class vistaInicioAdm extends javax.swing.JFrame {
             }
         });
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Menú Bibliotecas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Agency FB", 1, 14))); // NOI18N
+
+        jLabel2.setText("En esta sección usted podrá administrar las bibliotecas disponibles para las consultas de los usuarios.");
+
+        BotonBiblio.setText("Ingresar Menú Bibliotecas");
+        BotonBiblio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonBiblioActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addContainerGap(155, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BotonBiblio, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addComponent(BotonBiblio)
+                .addContainerGap())
+        );
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Menú Libros", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Agency FB", 1, 14))); // NOI18N
+
+        jLabel4.setText("En esta seccion usted podrá  administrar los libros que tiene a disposición cada biblioteca del sistema");
+
+        BotonLibros.setText("Ingresar Menú Libros");
+        BotonLibros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonLibrosActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BotonLibros, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addGap(18, 18, 18)
+                .addComponent(BotonLibros)
+                .addContainerGap(34, Short.MAX_VALUE))
+        );
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Menú Administradores", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Agency FB", 1, 14))); // NOI18N
+
+        jLabel6.setText("Usted como administrador puede ingresar admninistradores al sistema ");
+
+        BotonIngAdmin.setText("Ingresar Administrador");
+        BotonIngAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonIngAdminActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BotonIngAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(BotonIngAdmin)
+                .addGap(22, 22, 22))
+        );
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Menú Usuario", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Agency FB", 1, 14))); // NOI18N
+
+        jLabel8.setText("Como administrador puede gestionar usuarios presentes en el sistema");
+
+        BotonGestionUsuario.setText("Ingresar Menú Usuario");
+        BotonGestionUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonGestionUsuarioActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel8)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BotonGestionUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(BotonGestionUsuario)
+                .addGap(19, 19, 19))
+        );
+
+        jLabel1.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
+        jLabel1.setText("Bienvenido(a) a SIBICHAT");
+
+        CambioContrasena.setText("Cambio Contrasena");
+        CambioContrasena.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CambioContrasenaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator2)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(BotonIniciarChat)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton1))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel1)
-                                        .addComponent(jLabel2)
-                                        .addComponent(jLabel3)
-                                        .addComponent(jLabel4)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(EditarCuentaAdm)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addComponent(jSeparator3)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(BotonLibros, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(90, 90, 90))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(BotonIngAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(84, 84, 84))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8))
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(BotonBiblio, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(89, 89, 89))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(BotonGestionUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(84, 84, 84))))
+                        .addGap(9, 9, 9)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(BotonIniciarChat)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BotonCerrarSesion)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(EditarCuentaAdm)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(CambioContrasena))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(7, 7, 7)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(BotonCerrarSesion)
+                    .addComponent(BotonIniciarChat)
                     .addComponent(EditarCuentaAdm)
-                    .addComponent(BotonIniciarChat))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addGap(3, 3, 3)
-                .addComponent(BotonBiblio)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(BotonLibros)
-                .addGap(13, 13, 13)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(BotonIngAdmin)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8)
+                    .addComponent(jLabel1)
+                    .addComponent(CambioContrasena))
+                .addGap(17, 17, 17)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(BotonGestionUsuario)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -214,28 +279,32 @@ public class vistaInicioAdm extends javax.swing.JFrame {
     private void BotonBiblioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBiblioActionPerformed
         // TODO add your handling code here:
         vistaBibliotecas vistaB=new vistaBibliotecas();
+        vistaB.setLocationRelativeTo(null);
         vistaB.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_BotonBiblioActionPerformed
 
     private void BotonIngAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonIngAdminActionPerformed
-        // TODO add your handling code here:
+
         vistaAgregarAdm VAA= new vistaAgregarAdm();
+        VAA.setLocationRelativeTo(null);
         VAA.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
         
     }//GEN-LAST:event_BotonIngAdminActionPerformed
 
     private void BotonLibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonLibrosActionPerformed
-        // TODO add your handling code here:
+
         vistaLibros VI=new vistaLibros();
+        VI.setLocationRelativeTo(null);
         VI.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_BotonLibrosActionPerformed
 
     private void EditarCuentaAdmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarCuentaAdmActionPerformed
         // TODO add your handling code here:
         vistaEditarCuentaAdm VECA= new vistaEditarCuentaAdm();
+        VECA.setLocationRelativeTo(null);
         VECA.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_EditarCuentaAdmActionPerformed
@@ -243,6 +312,7 @@ public class vistaInicioAdm extends javax.swing.JFrame {
     private void BotonGestionUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonGestionUsuarioActionPerformed
         // TODO add your handling code here:
         vistaGestionUsuario VGU=new vistaGestionUsuario();
+        VGU.setLocationRelativeTo(null);
         VGU.setVisible(true);
         this.setVisible(false);
         
@@ -253,6 +323,27 @@ public class vistaInicioAdm extends javax.swing.JFrame {
         this.setVisible(false);
         vistaChat.getInstanciaVista().setVisible(true);
     }//GEN-LAST:event_BotonIniciarChatActionPerformed
+
+    private void BotonCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCerrarSesionActionPerformed
+        try {
+            conexion.desregistrarCliente(vistaPrincipal.getAux());
+        } catch (RemoteException ex) {
+            Logger.getLogger(vistaInicioAdm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        vistaPrincipal VP=new vistaPrincipal();
+        VP.setLocationRelativeTo(null);
+        VP.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_BotonCerrarSesionActionPerformed
+
+    private void CambioContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CambioContrasenaActionPerformed
+        vistaCambiarContrasenaAdmin VCC=new vistaCambiarContrasenaAdmin();
+        VCC.setLocationRelativeTo(null);
+        VCC.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_CambioContrasenaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -284,28 +375,32 @@ public class vistaInicioAdm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new vistaInicioAdm().setVisible(true);
+                JFrame.setDefaultLookAndFeelDecorated(true);
+                SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.MagmaSkin");
+                
+                
+                    new vistaInicioAdm().setVisible(true);
+                
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonBiblio;
+    private javax.swing.JButton BotonCerrarSesion;
     private javax.swing.JButton BotonGestionUsuario;
     private javax.swing.JButton BotonIngAdmin;
     private javax.swing.JButton BotonIniciarChat;
     private javax.swing.JButton BotonLibros;
+    private javax.swing.JButton CambioContrasena;
     private javax.swing.JButton EditarCuentaAdm;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     // End of variables declaration//GEN-END:variables
 }

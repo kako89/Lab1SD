@@ -7,7 +7,14 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        new vistaPrincipal().setVisible(true);
+        
+        
+        
+        
+        
+        vistaPrincipal VP=new vistaPrincipal();
+        VP.setLocationRelativeTo(null);
+        VP.setVisible(true);
     }
 
 }

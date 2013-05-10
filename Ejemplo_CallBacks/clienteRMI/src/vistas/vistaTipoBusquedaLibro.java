@@ -26,15 +26,22 @@ public class vistaTipoBusquedaLibro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        VolverLibro = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         botonBusquedaLibro = new javax.swing.JButton();
         botonBusquedaBiblioteca = new javax.swing.JButton();
-        VolverLibro = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Tipo de búsqueda");
+        VolverLibro.setText("Volver al Menú libro");
+        VolverLibro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VolverLibroActionPerformed(evt);
+            }
+        });
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tipo de Búsqueda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Agency FB", 1, 14))); // NOI18N
 
         jLabel2.setText("Seleccione el tipo de búsqueda que desea realizar");
 
@@ -52,49 +59,56 @@ public class vistaTipoBusquedaLibro extends javax.swing.JFrame {
             }
         });
 
-        VolverLibro.setText("Volver al Menú libro");
-        VolverLibro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                VolverLibroActionPerformed(evt);
-            }
-        });
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(botonBusquedaLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonBusquedaBiblioteca)
+                        .addGap(22, 22, 22))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonBusquedaBiblioteca)
+                    .addComponent(botonBusquedaLibro))
+                .addContainerGap(41, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
+                        .addGap(0, 312, Short.MAX_VALUE)
                         .addComponent(VolverLibro))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(botonBusquedaLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
-                        .addComponent(botonBusquedaBiblioteca)))
+                        .addGap(21, 21, 21)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(VolverLibro)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonBusquedaBiblioteca)
-                    .addComponent(botonBusquedaLibro))
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(VolverLibro)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
@@ -102,18 +116,21 @@ public class vistaTipoBusquedaLibro extends javax.swing.JFrame {
 
     private void botonBusquedaLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBusquedaLibroActionPerformed
         vistaBusquedaLibro VBL= new vistaBusquedaLibro();
+        VBL.setLocationRelativeTo(null);
         VBL.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_botonBusquedaLibroActionPerformed
 
     private void botonBusquedaBibliotecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBusquedaBibliotecaActionPerformed
         vistaBusquedaLibroBiblio VIL= new vistaBusquedaLibroBiblio();
+        VIL.setLocationRelativeTo(null);
         VIL.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_botonBusquedaBibliotecaActionPerformed
 
     private void VolverLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverLibroActionPerformed
         vistaLibros VL= new vistaLibros();
+        VL.setLocationRelativeTo(null);
         VL.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_VolverLibroActionPerformed
@@ -156,7 +173,7 @@ public class vistaTipoBusquedaLibro extends javax.swing.JFrame {
     private javax.swing.JButton VolverLibro;
     private javax.swing.JButton botonBusquedaBiblioteca;
     private javax.swing.JButton botonBusquedaLibro;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

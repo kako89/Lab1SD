@@ -4,6 +4,7 @@ import java.rmi.registry.Registry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import implementaciones.interfazServidorImpl;
+import javax.swing.JOptionPane;
 
 
 public class vistaServidor extends javax.swing.JFrame {
@@ -40,7 +41,7 @@ public class vistaServidor extends javax.swing.JFrame {
             }
         });
 
-        ButtonDetener.setText("Detener Server");
+        ButtonDetener.setText("Detener Servidor");
         ButtonDetener.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 detenerServer(evt);
@@ -98,7 +99,9 @@ public class vistaServidor extends javax.swing.JFrame {
             //en este caso se le dio el nombre "Implementacion".
             interfazServidorImpl objeto = new interfazServidorImpl();
             registro.rebind("Implementacion", objeto);
+            
             this.ButtonIniciar.setEnabled(false);
+            JOptionPane.showMessageDialog(this, "El servidor esta corriendo", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
         } catch (RemoteException ex) {
             Logger.getLogger(vistaServidor.class.getName()).log(Level.SEVERE, null, ex);
         }

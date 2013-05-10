@@ -4,6 +4,7 @@
  */
 package vistas;
 
+import clientermi.Validaciones;
 import clientermi.conexionRMI;
 import java.rmi.RemoteException;
 import java.util.logging.Level;
@@ -29,34 +30,7 @@ public class vistaRegistro extends javax.swing.JFrame {
         initComponents();
     }
     
-    /*public String getNombreReal(){
-        NombreReal=this.IngresoNombre.getText();
-        return NombreReal;
-    }
     
-    public String getPaterno(){
-        Paterno=this.IngresoPaterno.getText();
-        return Paterno;
-    }
-    
-    public String getMaterno(){
-        Materno=this.IngresoMaterno.getText();
-        return Materno;
-    }
-    public String getUser(){
-         User=this.IngresoUser.getText();
-        return User;
-    }
-    
-    public String getPass(){
-        Pass=this.IngresoPass.getText();
-        return Pass;
-    }
-    
-    public String getCpass(){
-        Cpass=this.IngresoCPass.getText();
-        return Cpass;
-    }*/
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -67,25 +41,28 @@ public class vistaRegistro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        IngresoNombre = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        IngresoPaterno = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        IngresoMaterno = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        IngresoUser = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        AceptarRegistro = new javax.swing.JButton();
-        CancelarRegistro = new javax.swing.JButton();
+        IngresoNombre = new javax.swing.JTextField();
+        IngresoPaterno = new javax.swing.JTextField();
+        IngresoMaterno = new javax.swing.JTextField();
+        IngresoUser = new javax.swing.JTextField();
         IngresoPass = new javax.swing.JPasswordField();
         IngresoCPass = new javax.swing.JPasswordField();
+        AceptarRegistro = new javax.swing.JButton();
+        CancelarRegistro = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        IngresoDeIP = new javax.swing.JTextField();
+        BotonVolverLogIn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Ingrese sus datos para el registro:");
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ingrese sus datos para el registro", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Agency FB", 1, 14))); // NOI18N
 
         jLabel2.setText("Nombre:");
 
@@ -95,16 +72,21 @@ public class vistaRegistro extends javax.swing.JFrame {
 
         jLabel5.setText("RUT: ");
 
-        IngresoUser.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel6.setText("Contraseña: ");
+
+        jLabel7.setText("Confirmar Contraseña: ");
+
         IngresoUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 IngresoUserActionPerformed(evt);
             }
         });
 
-        jLabel6.setText("Contraseña: ");
-
-        jLabel7.setText("Confirmar Contraseña: ");
+        IngresoPass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IngresoPassActionPerformed(evt);
+            }
+        });
 
         AceptarRegistro.setText("Aceptar");
         AceptarRegistro.addActionListener(new java.awt.event.ActionListener() {
@@ -120,9 +102,81 @@ public class vistaRegistro extends javax.swing.JFrame {
             }
         });
 
-        IngresoPass.addActionListener(new java.awt.event.ActionListener() {
+        jLabel1.setText("Ingreso IP:");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(151, 151, 151)
+                .addComponent(AceptarRegistro)
+                .addGap(31, 31, 31)
+                .addComponent(CancelarRegistro)
+                .addContainerGap(64, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(IngresoCPass)
+                    .addComponent(IngresoPaterno, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(IngresoMaterno, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(IngresoUser, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(IngresoNombre)
+                    .addComponent(IngresoPass, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(IngresoDeIP))
+                .addGap(43, 43, 43))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(IngresoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(IngresoPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(IngresoMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(IngresoUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(IngresoPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(IngresoCPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(IngresoDeIP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AceptarRegistro)
+                    .addComponent(CancelarRegistro))
+                .addGap(20, 20, 20))
+        );
+
+        BotonVolverLogIn.setText("Volver al Inicio de Sesión");
+        BotonVolverLogIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                IngresoPassActionPerformed(evt);
+                BotonVolverLogInActionPerformed(evt);
             }
         });
 
@@ -130,78 +184,21 @@ public class vistaRegistro extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(IngresoUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                                    .addComponent(IngresoMaterno, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(IngresoPass)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(AceptarRegistro)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(CancelarRegistro))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3))
-                                .addGap(35, 35, 35))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(IngresoNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                            .addComponent(IngresoPaterno)
-                            .addComponent(IngresoCPass))))
-                .addContainerGap(110, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(BotonVolverLogIn)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jLabel1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(12, Short.MAX_VALUE)
+                .addComponent(BotonVolverLogIn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(IngresoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(IngresoPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(IngresoMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(IngresoUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(IngresoPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(IngresoCPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AceptarRegistro)
-                    .addComponent(CancelarRegistro))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
 
         pack();
@@ -210,27 +207,39 @@ public class vistaRegistro extends javax.swing.JFrame {
     private void AceptarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarRegistroActionPerformed
         // TODO add your handling code here:
         //vistaPrincipal regreso= new vistaPrincipal();
-       
-            
+        vistaPrincipal VP=new vistaPrincipal();
+        VP.setIP(this.IngresoDeIP.getText());
+                   
                
             try {
                 //Intentamos conectarnos con el servidor
                 //Si hay exito empezamos a consumir servicios
+                String rutEntero=this.IngresoUser.getText();
+                String[] PartesRut=rutEntero.split("-");
                 String Pass=this.IngresoPass.getText();
                 String CPass=this.IngresoCPass.getText();
                 boolean var;
                 if (conexion.iniciarRegistry()){
                     if (Pass.equals(CPass)){
-                        var=conexion.getServidor().Registrar(this.IngresoNombre.getText().toLowerCase(), this.IngresoPaterno.getText().toLowerCase(), this.IngresoMaterno.getText().toLowerCase(), this.IngresoUser.getText(), this.IngresoPass.getText(), 1);
-                        if(var){
-                            JOptionPane.showMessageDialog(this, "Registro Completado. Se redigirá al sistema", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-                            new vistaInicio().setVisible(true);
-                            
-                            this.dispose();
-                            //conexion.registrarCliente(Nombre);
+                        Validaciones aValidar=new Validaciones();
+                        boolean EstadoValidacion=aValidar.ValidacionRut(rutEntero);
+                        if(EstadoValidacion){
+                            var=conexion.getServidor().Registrar(this.IngresoNombre.getText().toLowerCase(), this.IngresoPaterno.getText().toLowerCase(), this.IngresoMaterno.getText().toLowerCase(), PartesRut[0], this.IngresoPass.getText(), 1);
+                            if(var){
+                                JOptionPane.showMessageDialog(this, "Registro Completado. Se redigirá al sistema", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                                vistaInicio VI= new vistaInicio();
+                                VI.setLocationRelativeTo(null);
+                                VI.setVisible(true);
+
+                                this.dispose();
+                                //conexion.registrarCliente(Nombre);
+                            }
+                            else{
+                                JOptionPane.showMessageDialog(this, "Su registro no pudo ser completado", "Mensaje", JOptionPane.ERROR_MESSAGE);
+                            }
                         }
                         else{
-                            JOptionPane.showMessageDialog(this, "Su registro no pudo ser completado", "Mensaje", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(this, "El RUT ingresado no es valido. Por favor intentelo de nuevo", "Mensaje", JOptionPane.ERROR_MESSAGE);
                         }
                     }
                     else{
@@ -238,17 +247,13 @@ public class vistaRegistro extends javax.swing.JFrame {
                     }
                 }
                 else{
-                    JOptionPane.showMessageDialog(this, "No se pudo Conectar", "Mensaje", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "No se pudo Conectar!!", "Mensaje", JOptionPane.ERROR_MESSAGE);
                 }
 
             } catch (RemoteException ex) {
                 Logger.getLogger(vistaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
-        
-        
-          
-        
-        
+
     }//GEN-LAST:event_AceptarRegistroActionPerformed
 
     private void IngresoUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IngresoUserActionPerformed
@@ -265,6 +270,13 @@ public class vistaRegistro extends javax.swing.JFrame {
         this.setVisible(false);
         
     }//GEN-LAST:event_CancelarRegistroActionPerformed
+
+    private void BotonVolverLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonVolverLogInActionPerformed
+        vistaPrincipal VP= new vistaPrincipal();
+        VP.setLocationRelativeTo(null);
+        VP.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BotonVolverLogInActionPerformed
 
      
     
@@ -306,8 +318,10 @@ public class vistaRegistro extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AceptarRegistro;
+    private javax.swing.JButton BotonVolverLogIn;
     private javax.swing.JButton CancelarRegistro;
     private javax.swing.JPasswordField IngresoCPass;
+    private javax.swing.JTextField IngresoDeIP;
     public javax.swing.JTextField IngresoMaterno;
     public javax.swing.JTextField IngresoNombre;
     private javax.swing.JPasswordField IngresoPass;
@@ -320,5 +334,6 @@ public class vistaRegistro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

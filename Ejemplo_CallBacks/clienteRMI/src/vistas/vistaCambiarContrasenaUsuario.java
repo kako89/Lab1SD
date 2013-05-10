@@ -4,12 +4,18 @@
  */
 package vistas;
 
+import clientermi.conexionRMI;
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Marco
  */
 public class vistaCambiarContrasenaUsuario extends javax.swing.JFrame {
-
+    public conexionRMI conexion = new conexionRMI();
     /**
      * Creates new form vistaCambiarContrasenaUsuario
      */
@@ -30,15 +36,15 @@ public class vistaCambiarContrasenaUsuario extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jPasswordField2 = new javax.swing.JPasswordField();
-        jPasswordField3 = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        IngresoPassActual = new javax.swing.JPasswordField();
+        IngresoNuevaPass = new javax.swing.JPasswordField();
+        IngresoConfirmaPass = new javax.swing.JPasswordField();
+        BotonAceptarCambioPass = new javax.swing.JButton();
         BotonVolverMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Cambio Contraseña"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cambio Contraseña", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Agency FB", 1, 14))); // NOI18N
 
         jLabel1.setText("Contraseña Actual");
 
@@ -46,51 +52,61 @@ public class vistaCambiarContrasenaUsuario extends javax.swing.JFrame {
 
         jLabel3.setText("Confirmar Contraseña");
 
-        jButton1.setText("Aceptar");
+        IngresoConfirmaPass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IngresoConfirmaPassActionPerformed(evt);
+            }
+        });
+
+        BotonAceptarCambioPass.setText("Aceptar");
+        BotonAceptarCambioPass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonAceptarCambioPassActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(BotonAceptarCambioPass))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(35, 35, 35)
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(IngresoPassActual, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPasswordField3)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jButton1))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                        .addComponent(IngresoConfirmaPass, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addGap(34, 34, 34)
-                        .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(169, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(IngresoNuevaPass, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(82, 82, 82)
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(IngresoPassActual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(IngresoNuevaPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jPasswordField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(IngresoConfirmaPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addComponent(BotonAceptarCambioPass)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         BotonVolverMenu.setText("Volver al Menú Principal");
@@ -104,34 +120,90 @@ public class vistaCambiarContrasenaUsuario extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(BotonVolverMenu)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(188, 188, 188)
+                        .addComponent(BotonVolverMenu))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(16, 16, 16)
                 .addComponent(BotonVolverMenu)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void BotonVolverMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonVolverMenuActionPerformed
-        // TODO add your handling code here:
+
         vistaInicioUsuario VIU= new vistaInicioUsuario();
+        VIU.setLocationRelativeTo(null);
         VIU.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_BotonVolverMenuActionPerformed
+
+    private void IngresoConfirmaPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IngresoConfirmaPassActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_IngresoConfirmaPassActionPerformed
+
+    private void BotonAceptarCambioPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAceptarCambioPassActionPerformed
+        String PassAnterior=this.IngresoPassActual.getText();
+        String PassNueva=this.IngresoNuevaPass.getText();
+        String PassConfirmar=this.IngresoConfirmaPass.getText();
+        String rut=vistaPrincipal.getAux();
+        try {
+                //Intentamos conectarnos con el servidor
+                //Si hay exito empezamos a consumir servicios
+                if (conexion.iniciarRegistry()){
+                    
+                    
+                    
+                    if(PassNueva.equals(PassConfirmar)){
+                        System.out.println("entra aca");
+                        boolean Respuesta=conexion.getServidor().CambiarContrasena(rut,PassAnterior, PassNueva);
+                        if(Respuesta){
+                            JOptionPane.showMessageDialog(this, "Se contraseña ha sido actualizada", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                            vistaCambiarContrasenaUsuario VCCU = new vistaCambiarContrasenaUsuario();
+                            VCCU.setLocationRelativeTo(null);
+                            VCCU.setVisible(true);
+                            this.dispose();
+                        }
+                        else{
+                            JOptionPane.showMessageDialog(this, "Su contraseña no pudo ser actualizada", "Mensaje", JOptionPane.ERROR_MESSAGE);
+                            vistaCambiarContrasenaUsuario VCCU = new vistaCambiarContrasenaUsuario();
+                            VCCU.setLocationRelativeTo(null);
+                            VCCU.setVisible(true);
+                            this.dispose();
+                        }
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(this, "No hay coincidencias de las contraseñas ingresadas", "Mensaje", JOptionPane.ERROR_MESSAGE);
+                        vistaCambiarContrasenaUsuario VCCU = new vistaCambiarContrasenaUsuario();
+                        VCCU.setLocationRelativeTo(null);
+                        VCCU.setVisible(true);
+                        this.dispose();
+                    }
+                    
+                    
+                   
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, "No se pudo Conectar", "Mensaje", JOptionPane.ERROR_MESSAGE);
+                }
+
+            } catch (RemoteException ex) {
+                Logger.getLogger(vistaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }//GEN-LAST:event_BotonAceptarCambioPassActionPerformed
 
     /**
      * @param args the command line arguments
@@ -168,14 +240,14 @@ public class vistaCambiarContrasenaUsuario extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonAceptarCambioPass;
     private javax.swing.JButton BotonVolverMenu;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JPasswordField IngresoConfirmaPass;
+    private javax.swing.JPasswordField IngresoNuevaPass;
+    private javax.swing.JPasswordField IngresoPassActual;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JPasswordField jPasswordField2;
-    private javax.swing.JPasswordField jPasswordField3;
     // End of variables declaration//GEN-END:variables
 }

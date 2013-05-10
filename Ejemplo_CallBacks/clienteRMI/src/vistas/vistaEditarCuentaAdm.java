@@ -4,17 +4,49 @@
  */
 package vistas;
 
+import clientermi.conexionRMI;
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Marco
  */
 public class vistaEditarCuentaAdm extends javax.swing.JFrame {
-
+    public conexionRMI conexion = new conexionRMI();
     /**
      * Creates new form vistaEditarCuentaAdm
      */
     public vistaEditarCuentaAdm() {
         initComponents();
+        String rutUsuario=vistaPrincipal.getAux();
+        System.out.println(rutUsuario);
+        try {
+                //Intentamos conectarnos con el servidor
+                //Si hay exito empezamos a consumir servicios
+                if (conexion.iniciarRegistry()){
+                    String DatosUsuario=new String();
+                    DatosUsuario=conexion.getServidor().ConsultarUsuario(rutUsuario);
+                    String[] resultadoConsulta=DatosUsuario.split(";");
+                    
+                    this.NewNombreAdm.setText(resultadoConsulta[0]);
+                    this.NewApPatAdm.setText(resultadoConsulta[1]);
+                    this.NewApMatAdm.setText(resultadoConsulta[2]);
+                    this.NewRutAdm.setText(resultadoConsulta[3]);
+                    
+                    
+                    
+                    
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, "No se pudo Conectar", "Mensaje", JOptionPane.ERROR_MESSAGE);
+                }
+
+            } catch (RemoteException ex) {
+                Logger.getLogger(vistaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }
 
     /**
@@ -26,25 +58,37 @@ public class vistaEditarCuentaAdm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        BotonVolverMenuPrincipal = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        NewNombreAdm = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        CancelarEdit = new javax.swing.JButton();
-        NewNombreAdm = new javax.swing.JTextField();
         NewApPatAdm = new javax.swing.JTextField();
         NewApMatAdm = new javax.swing.JTextField();
         NewRutAdm = new javax.swing.JTextField();
-        NewPassAdm = new javax.swing.JPasswordField();
+        AceptarEdicion = new javax.swing.JButton();
+        CancelarEdit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Edición de la cuenta administrador");
+        BotonVolverMenuPrincipal.setText("Volver al Menú Principal");
+        BotonVolverMenuPrincipal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonVolverMenuPrincipalActionPerformed(evt);
+            }
+        });
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Edición de la cuenta administrador", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Agency FB", 1, 14))); // NOI18N
 
         jLabel2.setText("Nombre:");
+
+        NewNombreAdm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NewNombreAdmActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Apellido Paterno: ");
 
@@ -52,9 +96,12 @@ public class vistaEditarCuentaAdm extends javax.swing.JFrame {
 
         jLabel5.setText("RUT:");
 
-        jLabel6.setText("Contraseña: ");
-
-        jButton1.setText("Aceptar");
+        AceptarEdicion.setText("Aceptar");
+        AceptarEdicion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AceptarEdicionActionPerformed(evt);
+            }
+        });
 
         CancelarEdit.setText("Cancelar");
         CancelarEdit.addActionListener(new java.awt.event.ActionListener() {
@@ -63,11 +110,61 @@ public class vistaEditarCuentaAdm extends javax.swing.JFrame {
             }
         });
 
-        NewNombreAdm.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NewNombreAdmActionPerformed(evt);
-            }
-        });
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(NewApMatAdm, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(NewApPatAdm, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(67, 67, 67)
+                        .addComponent(NewNombreAdm, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(AceptarEdicion)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(CancelarEdit))
+                            .addComponent(NewRutAdm, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(46, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(NewNombreAdm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(NewApPatAdm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(NewApMatAdm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(NewRutAdm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AceptarEdicion)
+                    .addComponent(CancelarEdit))
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -75,65 +172,19 @@ public class vistaEditarCuentaAdm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jButton1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(CancelarEdit))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel6)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(NewPassAdm, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel5)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(NewRutAdm, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel4)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(NewApMatAdm, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(NewApPatAdm, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addGap(97, 97, 97)
-                            .addComponent(NewNombreAdm, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(146, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(BotonVolverMenuPrincipal)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(jLabel1)
+                .addGap(15, 15, 15)
+                .addComponent(BotonVolverMenuPrincipal)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(NewNombreAdm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(NewApPatAdm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(NewApMatAdm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(NewRutAdm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(NewPassAdm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(CancelarEdit))
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
@@ -146,10 +197,50 @@ public class vistaEditarCuentaAdm extends javax.swing.JFrame {
     private void CancelarEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarEditActionPerformed
         // TODO add your handling code here:
         vistaInicioAdm VIA=new vistaInicioAdm();
+        VIA.setLocationRelativeTo(null);
         VIA.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
         
     }//GEN-LAST:event_CancelarEditActionPerformed
+
+    private void AceptarEdicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarEdicionActionPerformed
+        
+        String rutUsuario=vistaPrincipal.getAux();
+        System.out.println(rutUsuario);
+        try {
+                //Intentamos conectarnos con el servidor
+                //Si hay exito empezamos a consumir servicios
+                if (conexion.iniciarRegistry()){
+
+                    boolean Estado=conexion.getServidor().ActualizarUsuario(this.NewNombreAdm.getText(), this.NewApPatAdm.getText(), this.NewApMatAdm.getText(), this.NewRutAdm.getText(),rutUsuario, 2 );
+                    if (Estado){
+                        JOptionPane.showMessageDialog(this, "Datos Actualizados Exitosamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                        vistaEditarCuentaAdm VECA = new vistaEditarCuentaAdm();
+                        VECA.setLocationRelativeTo(null);
+                        VECA.setVisible(true);
+                        this.dispose();
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(this, "No se pudo actualizar datos", "Mensaje", JOptionPane.ERROR_MESSAGE);
+                    }
+                    
+                    
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, "No se pudo Conectar", "Mensaje", JOptionPane.ERROR_MESSAGE);
+                }
+
+            } catch (RemoteException ex) {
+                Logger.getLogger(vistaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }//GEN-LAST:event_AceptarEdicionActionPerformed
+
+    private void BotonVolverMenuPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonVolverMenuPrincipalActionPerformed
+        vistaInicioAdm VIA=new vistaInicioAdm();
+        VIA.setLocationRelativeTo(null);
+        VIA.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BotonVolverMenuPrincipalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -186,18 +277,17 @@ public class vistaEditarCuentaAdm extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AceptarEdicion;
+    private javax.swing.JButton BotonVolverMenuPrincipal;
     private javax.swing.JButton CancelarEdit;
     private javax.swing.JTextField NewApMatAdm;
     private javax.swing.JTextField NewApPatAdm;
     private javax.swing.JTextField NewNombreAdm;
-    private javax.swing.JPasswordField NewPassAdm;
     private javax.swing.JTextField NewRutAdm;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
