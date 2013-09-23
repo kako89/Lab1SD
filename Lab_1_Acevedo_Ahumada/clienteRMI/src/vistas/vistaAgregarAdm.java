@@ -4,6 +4,7 @@
  */
 package vistas;
 
+import clientermi.Validaciones;
 import clientermi.conexionRMI;
 import java.rmi.RemoteException;
 import java.util.logging.Level;
@@ -186,21 +187,31 @@ public class vistaAgregarAdm extends javax.swing.JFrame {
 
     private void AcepRegAdmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcepRegAdmActionPerformed
         // TODO add your handling code here:
+        String rutEntero=this.RutAdm.getText();
+        String[] PartesRut=rutEntero.split("-");
         try {
+                
                 //Intentamos conectarnos con el servidor
                 //Si hay exito empezamos a consumir servicios
                 if (conexion.iniciarRegistry()){
                     if(this.PassAdm.getText().equals(this.PassAdm2.getText())){
-                        if (conexion.getServidor().RegistrarAdm(this.NombreAdmin.getText().toLowerCase(), this.ApPatAdm.getText().toLowerCase(),this.ApMatAdm.getText().toLowerCase(), this.RutAdm.getText(), this.PassAdm.getText(), 2)){
-                            JOptionPane.showMessageDialog(this, "Administrador Agregado", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-                            vistaInicioAdm VIA=new vistaInicioAdm();
-                            VIA.setVisible(true);
-                            this.dispose();
-                            //conexion.registrarCliente(Nombre);
+                        Validaciones aValidar=new Validaciones();
+                        boolean EstadoValidacion=aValidar.ValidacionRut(rutEntero);
+                        if(EstadoValidacion){
+                            if (conexion.getServidor().RegistrarAdm(this.NombreAdmin.getText().toLowerCase(), this.ApPatAdm.getText().toLowerCase(),this.ApMatAdm.getText().toLowerCase(), PartesRut[0], this.PassAdm.getText(), 2)){
+                                JOptionPane.showMessageDialog(this, "Administrador Agregado", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                                vistaInicioAdm VIA=new vistaInicioAdm();
+                                VIA.setVisible(true);
+                                this.dispose();
+                                //conexion.registrarCliente(Nombre);
 
+                            }
+                            else{
+                                JOptionPane.showMessageDialog(this, "No se pudo agregar el administrador", "Mensaje", JOptionPane.ERROR_MESSAGE);
+                            }
                         }
                         else{
-                            JOptionPane.showMessageDialog(this, "No se pudo agregar el administrador", "Mensaje", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(this, "El registro no pudo ser completado", "Mensaje", JOptionPane.ERROR_MESSAGE);
                         }
                     }
                     else{
